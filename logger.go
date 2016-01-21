@@ -15,19 +15,21 @@ const (
 	defaultMaxSize = 200 * 1024
 )
 
-var active = false
-var d time.Duration
-var maxsize int64
-var retentionDuration time.Duration
-var logfile *os.File
-var t *time.Ticker
+var (
+	active            = false
+	d                 time.Duration
+	maxsize           int64
+	retentionDuration time.Duration
+	logfile           *os.File
+	t                 *time.Ticker
+)
 
-// Start the outpug log to file with default options
+// Start the output log to file with default options
 func Start() error {
 	return StartWithOptions(time.Hour, defaultMaxSize, 24*time.Hour)
 }
 
-// StartWithOptions can be used to change default option
+// StartWithOptions can be used to change default options
 func StartWithOptions(md time.Duration, mfs int64, rd time.Duration) error {
 	active = true
 
